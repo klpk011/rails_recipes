@@ -1,0 +1,7 @@
+zh-CN:
+  activerecord:
+    attributes:
+      event:
+        name: "活动名称"
+        description: "描述"
+        friendly_id: "自定义 ID"
