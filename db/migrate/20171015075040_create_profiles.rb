@@ -8,7 +8,7 @@ class CreateProfiles < ActiveRecord::Migration[5.0]
       t.string :education
       t.string :occupation
       t.text :bio
-      t.text :sepcialty
+      t.text :specialty
       t.timestamps
     end
   end

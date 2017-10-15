@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20171015075040) do
     t.string   "education"
     t.string   "occupation"
     t.text     "bio"
-    t.text     "sepcialty"
+    t.text     "specialty"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
