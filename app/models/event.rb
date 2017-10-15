@@ -22,4 +22,6 @@ class Event < ApplicationRecord
  validates_inclusion_of :status, :in => STATUS
 
  belongs_to :category, :optional => true
+
+ has_many :ticets, :dependent => :destroy
 end
