@@ -1,7 +1,7 @@
 class Admin::EventsController < AdminController
 
   def index
-    @events = Event.all
+    @events = Event.rank(:row_order).all
   end
 
   def show
@@ -58,7 +58,7 @@ class Admin::EventsController < AdminController
       elsif params[:commit] == I18n.t(:bulk_delete)
         event.destroy
         total += 1
-      end      
+      end
     end
     flash[:alert] = "成功完成#{total} 笔"
     redirect_to admin_events_path
