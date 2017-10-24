@@ -13,4 +13,5 @@ class User < ApplicationRecord
   has_one :profile
 
   accepts_nested_attributes_for :profile
+  has_many :registations
 end

@@ -28,4 +28,6 @@ class Event < ApplicationRecord
 
  include RankedModel
  ranks :row_order
+
+ has_many :registrations, :dependent => :destroy
 end
