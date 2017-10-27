@@ -49,6 +49,20 @@ class RegistrationsController < ApplicationController
     end
   end
 
+  def step1
+    @registration = @event.registrations.find_by_uuid(params[:id])
+  end
+
+  def step1_update
+    @registration = @event.registrations.find_by_uuid(params[:id])
+
+    if @registration.update(registration_params)
+      redirect_to step2_event_registration_path(@event, @registration)
+    else
+      render "step1"
+    end
+  end
+
   protected
   def registration_params
     params.require(:registration).permit(:ticket_id, :name, :email, :cellphone, :website, :bio)
