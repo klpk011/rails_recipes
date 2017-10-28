@@ -11,6 +11,9 @@ class Admin::EventRegistrationsController < ApplicationController
     # if params[:ticket_id].present?
     #   @registrations = @registrations.by_ticket(params[:ticket_id])
     # end
+    if params[:registration_id].present?
+      @registrations = @registrations.where( :id => params[:registration_id].split(",") )
+    end
 
     if Array(params[:statuses]).any?
       @registrations = @registrations.by_status(params[:statuses])
@@ -27,6 +30,7 @@ class Admin::EventRegistrationsController < ApplicationController
     if params[:end_on].present?
       @registrations = @registrations.where( "created_at <= ?", Date.parse(params[:end_on]).end_of_day )
     end
+
   end
 
   def destroy
