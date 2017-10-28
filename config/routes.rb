@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     root 'events#index'
     resources :events do
       resources :tickets, controller: 'event_tickets'
+      resources :registrations, :controller => "event_registrations"
       collection do
         post :bulk_update
       end
