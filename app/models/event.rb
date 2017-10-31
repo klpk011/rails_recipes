@@ -9,11 +9,13 @@ class Event < ApplicationRecord
  before_validation :generate_friendly_id, :on => :create
  def to_param
    #{"#{self.id}-#{self.name}"}
-   self.friendly_id
+ self.friendly_id
  end
 
  scope :only_public, -> { where( :status => "public" )}
  scope :only_available, -> { where( :status => ["public", "private"] )}
+
+ mount_uploader :logo, EventLogoUploader
 
  protected
 
