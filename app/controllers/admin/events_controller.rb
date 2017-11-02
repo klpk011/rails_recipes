@@ -14,14 +14,28 @@ class Admin::EventsController < AdminController
               'rgba(255, 159, 64, 0.2)'
              ]
     ticket_names = @event.tickets.map { |t| t.name }
+    # @data1 = {
+    #   labels: ticket_names,
+    #   datasets: [{
+    #     label: "# of Registrations",
+    #     data: @event.tickets.map{ |t| t.registrations.count },
+    #     backgroundColor: colors,
+    #     borderWidth: 1
+    #     }]
+    # }
+    status_colors = {"confirmed" => "#FF6384",
+                    "pending" => "#36A2EB"}
+
     @data1 = {
       labels: ticket_names,
-      datasets: [{
-        label: "# of Registrations",
-        data: @event.tickets.map{ |t| t.registrations.count },
-        backgroundColor: colors,
-        borderWidth: 1
-        }]
+      datasets: Registration::STATUS.map do |s|
+        {
+          label: I18n.t(s, :scope => "registration.status"),
+          data: @event.tickets.map{ |t| t.registrations.by_status(s).count },
+          backgroundColor: status_colors[s],
+          boarderWidth: 1
+        }
+      end
     }
 
     @data2 = {
