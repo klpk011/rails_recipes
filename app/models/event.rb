@@ -30,6 +30,7 @@ class Event < ApplicationRecord
   ranks :row_order
 
   has_many :registrations, dependent: :destroy
+  has_many :registration_imports, :dependent => :destroy
 
   has_many :attachments, :class_name => "EventAttachment", :dependent => :destroy
   accepts_nested_attributes_for :attachments, :allow_destroy => true, :reject_if => :all_blank
